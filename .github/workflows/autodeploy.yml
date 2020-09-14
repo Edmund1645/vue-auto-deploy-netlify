@@ -5,15 +5,15 @@ name: Auto Deploy
 
 on:
   push:
-    branches: [master]
+    branches: [master] # run on pushes to master
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node.js
+      - uses: actions/checkout@v2 # setup the repository in the runner
+      - name: Setup Node.js # setup Node.js in the runner
         uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -22,10 +22,10 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test:unit
-      - uses: netlify/actions/cli@master
+      - run: npm ci # install dependencies
+      - run: npm run build --if-present # build the project
+      - run: npm run test:unit # run the tests
+      - uses: netlify/actions/cli@master # deploy site to netlify using secrets created on repository
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
