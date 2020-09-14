@@ -32,6 +32,6 @@ describe('App.vue', () => {
       },
     });
     await wrapper.find('button.delete-task-button').trigger('click');
-    expect(wrapper.vm.$data.todos.indexOf(todos[0])).toEqual(1); // change to -1
+    expect(wrapper.vm.$data.todos.indexOf(todos[0])).toEqual(-1);
   });
 });
