@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <h1>Todo app</h1>
+    <h1>Todo apps</h1>
     <div id="add-todos">
       <input v-model="task" type="text" class="task-input" />
       <button class="add-task-button" @click="addTask">Add Task</button>
